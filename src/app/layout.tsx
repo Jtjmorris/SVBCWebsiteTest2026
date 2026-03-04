@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
@@ -13,11 +13,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument",
-  weight: "400",
-  subsets: ["latin"],
-});
+
 
 export const metadata: Metadata = {
   title: "Sturgeon Valley Baptist Church",
@@ -40,7 +36,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${instrumentSerif.variable} antialiased min-h-screen flex flex-col font-sans`}
+        className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans`}
       >
         <Providers>
           <NavBar items={headerItems} siteTitle={siteTitle} />
