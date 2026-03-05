@@ -24,22 +24,22 @@ export default async function EventsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {events?.map((event) => (
                         <Card key={event.id} className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
-                            {event.image && (
+                            {event.image ? (
                                 <div className="aspect-video relative w-full shrink-0 overflow-hidden bg-muted">
                                     <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
                                     <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase shadow-sm">
                                         {event.category}
                                     </div>
                                 </div>
+                            ) : (
+                                <div className="aspect-video relative w-full shrink-0 overflow-hidden bg-primary/5 flex items-center justify-center">
+                                    <Calendar className="w-16 h-16 text-primary/20" />
+                                    <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase shadow-sm">
+                                        {event.category}
+                                    </div>
+                                </div>
                             )}
                             <CardHeader>
-                                {!event.image && (
-                                    <div className="mb-2">
-                                        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase">
-                                            {event.category}
-                                        </span>
-                                    </div>
-                                )}
                                 <CardTitle className="text-2xl">{event.title}</CardTitle>
                             </CardHeader>
                             <CardContent className="flex-grow space-y-4">

@@ -27,7 +27,8 @@ export function Hero({
         <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden flex items-center justify-center">
             {/* Background Image/Video */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-black/40 z-10" /> {/* Overlay */}
+                <div className="absolute inset-0 bg-black/60 z-10" /> {/* Darker Overlay */}
+                <div className="absolute inset-0 z-10 opacity-30 mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
                 {typeof backgroundImage === 'string' ? (
                     <img
                         src={backgroundImage}
@@ -51,7 +52,7 @@ export function Hero({
                 >
                     <motion.h1
                         variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
+                        className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 drop-shadow-2xl"
                     >
                         {title}
                     </motion.h1>
@@ -65,12 +66,16 @@ export function Hero({
                         variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
                         className="flex flex-col sm:flex-row gap-4 justify-center"
                     >
-                        <Button asChild size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-primary/50">
-                            <Link href={primaryCtaLink}>{primaryCtaText}</Link>
-                        </Button>
-                        <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full bg-white/10 backdrop-blur-sm border-white/50 text-white hover:bg-white/20 hover:text-white border-2">
-                            <Link href={secondaryCtaLink}>{secondaryCtaText}</Link>
-                        </Button>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button asChild size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-primary/50">
+                                <Link href={primaryCtaLink}>{primaryCtaText}</Link>
+                            </Button>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full glass-panel border-white/20 text-white hover:bg-white/10 hover:text-white border-2">
+                                <Link href={secondaryCtaLink}>{secondaryCtaText}</Link>
+                            </Button>
+                        </motion.div>
                     </motion.div>
                 </motion.div>
             </div>

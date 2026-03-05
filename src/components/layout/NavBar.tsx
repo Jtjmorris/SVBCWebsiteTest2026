@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -26,8 +27,13 @@ export function NavBar({ items, siteTitle = "SVBC" }: { items: NavItem[], siteTi
     ]
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center justify-between">
+        <motion.header
+            initial={{ y: -100, x: "-50%", opacity: 0 }}
+            animate={{ y: 0, x: "-50%", opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="fixed top-4 left-1/2 z-50 w-[95%] max-w-6xl rounded-full glass-panel"
+        >
+            <div className="flex h-14 items-center justify-between px-6 w-full">
                 <Link href="/" className="flex items-center space-x-2">
                     <span className="text-xl font-bold tracking-tight text-primary">{siteTitle}</span>
                 </Link>
@@ -84,6 +90,6 @@ export function NavBar({ items, siteTitle = "SVBC" }: { items: NavItem[], siteTi
                     </Sheet>
                 </div>
             </div>
-        </header>
+        </motion.header>
     )
 }

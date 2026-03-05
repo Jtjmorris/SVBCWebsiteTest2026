@@ -9,9 +9,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { RichTextEditor } from "@/components/admin/RichTextEditor"
 import { MediaLibrary } from "@/components/admin/MediaLibrary"
 import { PageContentMap, updatePageContent } from "@/lib/content"
-import { Loader2, Plus, Save, RotateCcw, Image as ImageIcon, Palette, Type, Code } from "lucide-react"
+import { Plus, Save, RotateCcw, Image as ImageIcon, Palette, Type, Code } from "lucide-react"
 
 interface AdvancedEditorProps {
     slug: string
@@ -163,11 +164,12 @@ export function AdvancedEditor({ slug, content, onUpdate }: AdvancedEditorProps)
                                                     </div>
 
                                                     {inputType === 'textarea' ? (
-                                                        <Textarea
-                                                            value={item.value}
-                                                            onChange={(e) => handleValueChange(globalIndex, e.target.value)}
-                                                            className="min-h-[80px] text-sm"
-                                                        />
+                                                        <div className="bg-white rounded-md max-w-full overflow-hidden">
+                                                            <RichTextEditor
+                                                                value={item.value}
+                                                                onChange={(val) => handleValueChange(globalIndex, val)}
+                                                            />
+                                                        </div>
                                                     ) : inputType === 'color' ? (
                                                         <div className="flex items-center gap-3">
                                                             <div className="h-10 w-10 rounded-full border shadow-sm overflow-hidden shrink-0">

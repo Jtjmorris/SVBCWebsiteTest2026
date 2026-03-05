@@ -34,7 +34,7 @@ export function EditableText({
     const handleBlur = async () => {
         if (!contentRef.current) return
 
-        const newValue = contentRef.current.innerText
+        const newValue = contentRef.current.innerHTML
         if (newValue === content) return // No change
 
         setIsSaving(true)
@@ -45,7 +45,9 @@ export function EditableText({
         } catch (error) {
             console.error(error)
             // Revert on error?
-            contentRef.current.innerText = content
+            if (contentRef.current) {
+                contentRef.current.innerHTML = content
+            }
             alert("Failed to save changes")
         } finally {
             setIsSaving(false)
@@ -53,7 +55,7 @@ export function EditableText({
     }
 
     if (!canEdit) {
-        return <Component className={className}>{content}</Component>
+        return <Component className={className} dangerouslySetInnerHTML={{ __html: content }} />
     }
 
     return (
@@ -63,11 +65,10 @@ export function EditableText({
             onBlur={handleBlur}
             suppressContentEditableWarning
             className={`${className} ${isEditing
-                    ? "outline-dashed outline-2 outline-primary/50 p-1 rounded hover:bg-muted/50 transition-all cursor-text"
-                    : ""
+                ? "outline-dashed outline-2 outline-primary/50 p-1 rounded hover:bg-muted/50 transition-all cursor-text"
+                : ""
                 } ${isSaving ? "opacity-50" : ""}`}
-        >
-            {content}
-        </Component>
+            dangerouslySetInnerHTML={{ __html: content }}
+        />
     )
 }

@@ -14,13 +14,20 @@ export function SermonCard({ sermon }: SermonCardProps) {
     return (
         <Card className="flex flex-col h-full overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <div className="relative aspect-video w-full overflow-hidden bg-muted">
-                <Image
-                    src={sermon.thumbnail}
-                    alt={sermon.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                />
+                {sermon.thumbnail ? (
+                    <Image
+                        src={sermon.thumbnail}
+                        alt={sermon.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-primary/10 text-primary/40">
+                        <PlayCircle className="w-12 h-12 mb-2" />
+                        <span className="text-sm font-medium">No Video Preview</span>
+                    </div>
+                )}
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                     <PlayCircle className="w-16 h-16 text-white drop-shadow-lg" />
                 </div>

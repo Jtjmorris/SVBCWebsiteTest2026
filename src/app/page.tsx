@@ -55,7 +55,7 @@ export default async function Home() {
             contentKey="title"
             defaultValue={content.welcome?.title || "Love God. Serve Others. Change Lives."}
             as="h2"
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
+            className="text-4xl font-heading font-bold tracking-tighter sm:text-5xl md:text-6xl"
           />
           <EditableText
             pageSlug="home"
@@ -74,10 +74,11 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section background="muted">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="flex flex-col items-center space-y-4 p-6 bg-background rounded-lg shadow-sm">
-            <div className="p-3 bg-primary/10 rounded-full">
+      <Section className="py-24 bg-muted/30">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {/* Events - Big Card */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col items-start text-left p-8 md:p-10 bg-card border rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 group">
+            <div className="p-4 bg-primary/10 rounded-2xl mb-4 group-hover:scale-105 transition-transform">
               <Calendar className="h-8 w-8 text-primary" />
             </div>
             <EditableText
@@ -86,7 +87,7 @@ export default async function Home() {
               contentKey="eventsTitle"
               defaultValue={content.features?.eventsTitle || "Events"}
               as="h3"
-              className="text-xl font-bold"
+              className="text-2xl md:text-3xl font-heading font-bold mb-2"
             />
             <EditableText
               pageSlug="home"
@@ -94,17 +95,18 @@ export default async function Home() {
               contentKey="eventsDescription"
               defaultValue={content.features?.eventsDescription || "From Youth Group to Seniors' Bible Study, there's something for everyone."}
               as="p"
-              className="text-muted-foreground"
+              className="text-muted-foreground text-lg mb-6 max-w-md"
               multiline
             />
-            <Button variant="outline" asChild>
+            <Button variant="outline" className="rounded-full mt-auto" asChild>
               <Link href="/events">View Calendar</Link>
             </Button>
           </div>
 
-          <div className="flex flex-col items-center space-y-4 p-6 bg-background rounded-lg shadow-sm">
-            <div className="p-3 bg-primary/10 rounded-full">
-              <BookOpen className="h-8 w-8 text-primary" />
+          {/* Sermons - Tall Card Accent */}
+          <div className="col-span-1 flex flex-col items-start text-left p-8 md:p-10 bg-primary text-primary-foreground rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 group">
+            <div className="p-4 bg-white/20 rounded-2xl mb-4 group-hover:scale-105 transition-transform">
+              <BookOpen className="h-8 w-8 text-primary-foreground" />
             </div>
             <EditableText
               pageSlug="home"
@@ -112,7 +114,7 @@ export default async function Home() {
               contentKey="sermonsTitle"
               defaultValue={content.features?.sermonsTitle || "Sermons"}
               as="h3"
-              className="text-xl font-bold"
+              className="text-2xl md:text-3xl font-heading font-bold mb-2"
             />
             <EditableText
               pageSlug="home"
@@ -120,38 +122,45 @@ export default async function Home() {
               contentKey="sermonsDescription"
               defaultValue={content.features?.sermonsDescription || "Listen to recent messages from Pastor Serge and the team."}
               as="p"
-              className="text-muted-foreground"
+              className="text-primary-foreground/80 text-lg mb-6"
               multiline
             />
-            <Button variant="outline" asChild>
+            <Button variant="secondary" className="rounded-full mt-auto hover:scale-105 transition-transform" asChild>
               <Link href="/sermons">Listen Now</Link>
             </Button>
           </div>
 
-          <div className="flex flex-col items-center space-y-4 p-6 bg-background rounded-lg shadow-sm">
-            <div className="p-3 bg-primary/10 rounded-full">
-              <Users className="h-8 w-8 text-primary" />
+          {/* Ministries - Wide Bottom Card */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col md:flex-row items-center justify-between p-8 md:p-10 bg-card border rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 group">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 w-full text-center sm:text-left">
+              <div className="p-6 bg-primary/10 rounded-2xl group-hover:scale-105 transition-transform shrink-0">
+                <Users className="h-10 w-10 text-primary" />
+              </div>
+              <div className="flex-1 space-y-2">
+                <EditableText
+                  pageSlug="home"
+                  sectionId="features"
+                  contentKey="ministriesTitle"
+                  defaultValue={content.features?.ministriesTitle || "Ministries"}
+                  as="h3"
+                  className="text-2xl md:text-3xl font-heading font-bold"
+                />
+                <EditableText
+                  pageSlug="home"
+                  sectionId="features"
+                  contentKey="ministriesDescription"
+                  defaultValue={content.features?.ministriesDescription || "Find your place in our community through SVBC Kids, Youth, and more."}
+                  as="p"
+                  className="text-muted-foreground text-lg max-w-2xl"
+                  multiline
+                />
+              </div>
+              <div className="mt-6 sm:mt-0 shrink-0">
+                <Button size="lg" className="rounded-full shadow-md hover:shadow-primary/20" asChild>
+                  <Link href="/ministries">Get Involved</Link>
+                </Button>
+              </div>
             </div>
-            <EditableText
-              pageSlug="home"
-              sectionId="features"
-              contentKey="ministriesTitle"
-              defaultValue={content.features?.ministriesTitle || "Ministries"}
-              as="h3"
-              className="text-xl font-bold"
-            />
-            <EditableText
-              pageSlug="home"
-              sectionId="features"
-              contentKey="ministriesDescription"
-              defaultValue={content.features?.ministriesDescription || "Find your place in our community through SVBC Kids, Youth, and more."}
-              as="p"
-              className="text-muted-foreground"
-              multiline
-            />
-            <Button variant="outline" asChild>
-              <Link href="/ministries">Get Involved</Link>
-            </Button>
           </div>
         </div>
       </Section>
@@ -165,7 +174,7 @@ export default async function Home() {
               contentKey="title"
               defaultValue={content.location?.title || "Join Us This Sunday"}
               as="h2"
-              className="text-3xl font-bold"
+              className="text-4xl md:text-5xl font-heading font-bold"
             />
             <div className="space-y-4 text-lg">
               <div className="flex items-center gap-3">
@@ -198,11 +207,13 @@ export default async function Home() {
               className="text-muted-foreground"
               multiline
             />
-            <Button asChild>
-              <Link href="/visit">Plan Your Visit</Link>
-            </Button>
+            <div className="pt-4">
+              <Button size="lg" className="rounded-full shadow-lg hover:shadow-primary/20" asChild>
+                <Link href="/visit">Plan Your Visit</Link>
+              </Button>
+            </div>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-xl h-[400px]">
+          <div className="rounded-3xl overflow-hidden shadow-2xl h-[400px] border">
             {/* Map Placeholder or Church Exterior Image */}
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2365.156555673038!2d-113.6276706841516!3d53.643720980041695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0273760372b2b%3A0xe54792615432c253!2sSturgeon%20Valley%20Baptist%20Church!5e0!3m2!1sen!2sca!4v1676666666666!5m2!1sen!2sca"
